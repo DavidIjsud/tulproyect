@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tul_proyect">
+    package="com.david.tul_proyect">
    <application
         android:label="tul_proyect"
         android:icon="@mipmap/ic_launcher">
