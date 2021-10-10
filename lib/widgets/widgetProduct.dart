@@ -39,7 +39,22 @@ class WidgetProduct extends StatelessWidget {
                       ],
                     ),
                  ),
-                 IconButton(onPressed: (){}, icon:  Icon( Icons.add ) ) 
+                 Column(
+                    children: [
+                        IconButton(onPressed: (){}, icon:  Icon( Icons.add ) ), 
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black38),
+                            borderRadius: BorderRadius.circular(5)
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric( horizontal: 10 ),
+                            child: Text("0"),
+                          )),
+                        IconButton(onPressed: (){}, icon:  Icon( Icons.remove ) ), 
+                    ],
+                 ),
+                 
              ],
           )
         ),
