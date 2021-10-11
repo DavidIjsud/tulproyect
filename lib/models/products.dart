@@ -2,24 +2,27 @@
 
 class Product{
 
-    final int id ;
-    final String nombre;
-    final String sku;
-    final String descripcion;
+     int id ;
+     String nombre;
+     String sku;
+     String descripcion;
+     int cantidadSolicitado;
 
-     Product({ required this.id , required this.nombre , required this.sku , required this.descripcion });
+     Product({ required this.id , required this.nombre , required this.sku , required this.descripcion , required this.cantidadSolicitado });
 
     Product copyWith({ 
       int? id ,
       String? nombre ,
       String? sku ,
-      String? descripcion
+      String? descripcion,
+      int? cantidadSolicitado
        }){
       return Product(
         id: id ?? this.id,
         nombre: nombre ?? this.nombre,
         sku: sku ?? this.sku,
         descripcion: descripcion ?? this.descripcion,
+        cantidadSolicitado: cantidadSolicitado ?? this.cantidadSolicitado,
       );
     }
      
@@ -28,6 +31,7 @@ class Product{
         nombre: json["nombre"],
         sku: json["sku"],
         descripcion: json["descripcion"],
+        cantidadSolicitado: json["cantidadSolicitado"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -35,6 +39,7 @@ class Product{
         "nombre": nombre,
         "sku": sku,
         "descripcion": descripcion,
+        "cantidadSolicitado": cantidadSolicitado,
     };
 
 }

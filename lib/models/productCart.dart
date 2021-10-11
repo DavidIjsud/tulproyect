@@ -17,19 +17,26 @@ class ProductCart {
         );
       }
 
-      factory ProductCart.fromJson(Map<String, dynamic> json) {
-        return ProductCart(
-          productsSelected: json['productsSelected'],
-          cart: json['cart'],
-        );
-      }
+    factory ProductCart.fromJson(Map<String, dynamic> json) => ProductCart(
+        productsSelected: List<Product>.from(json["productsSelected"].map((x) => Product.fromJson(x))),
+        cart: Cart.fromJson(json["cart"]),
+    );
 
-      Map<String, dynamic> toJson() {
-        return {
-          'productsSelected': productsSelected,
-          'cart': cart,
-        };
+
+    Map<String, dynamic> toJson() => {
+        "productsSelected": List<dynamic>.from(productsSelected.map((x) => x.toJson())),
+        "cart": cart.toJson(),
+    };
+
+
+    int searchForProductCantidad(int productId) {
+      for (int i = 0; i < productsSelected.length; i++) {
+        if (productsSelected[i].id == productId) {
+          return productsSelected[i].cantidadSolicitado;
+        }
       }
+      return 0;
+    }
 
 
 }

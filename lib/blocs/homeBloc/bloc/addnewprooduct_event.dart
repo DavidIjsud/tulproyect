@@ -18,3 +18,13 @@ class AddNewProductEvent extends BaseEvents {
     });         
 
 }
+
+class RemoveProductEvent extends BaseEvents {
+
+    final int id;
+
+    RemoveProductEvent({ 
+      required this.id
+    });         
+
+}

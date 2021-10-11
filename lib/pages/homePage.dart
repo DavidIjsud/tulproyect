@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tul_proyect/blocs/homeBloc/bloc/addnewprooduct_bloc.dart';
 import 'package:tul_proyect/widgets/widgetProduct.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,8 +13,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  
-
   @override
   Widget build(BuildContext context) {
     CollectionReference  _products =  FirebaseFirestore.instance.collection('products');
@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
           actions: [
               IconButton(
                 onPressed: (){
-
+                  Navigator.pushNamed(context, 'cart');
                 }, 
                 icon: Icon(Icons.shopping_cart)
               )
@@ -33,18 +33,18 @@ class _HomePageState extends State<HomePage> {
           future :_products.get(),
           builder: ( _ , AsyncSnapshot<QuerySnapshot> asyncSnapshot ) {
                
-             
                     if( asyncSnapshot.hasData ){
                       return   ListView.builder(
                               itemCount:  asyncSnapshot.data!.docs.length, 
                               itemBuilder: ( _ , i ) {
-                                  return WidgetProduct(
+
+                                 return   WidgetProduct(
                                      id:  asyncSnapshot.data!.docs[i].get('id'),
                                      nombre: asyncSnapshot.data!.docs[i].get('nombre'),
                                      sku: asyncSnapshot.data!.docs[i].get('sku'), 
                                      descripcion: asyncSnapshot.data!.docs[i].get('descripcion')
                                   );
-                              }
+                               }
                             );
                     }
                

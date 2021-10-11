@@ -1,12 +1,16 @@
 part of 'addnewprooduct_bloc.dart';
 
-@immutable
-abstract class AddnewprooductState {}
 
-class AddnewprooductInitial extends AddnewprooductState {
+class NewProductState  {
 
     final  ProductCart productCart;
     
-    AddnewprooductInitial( { required this.productCart } );
+    NewProductState( { required this.productCart } );
+
+    NewProductState copyWith( { ProductCart? productCart } ) {
+        return NewProductState(
+            productCart: productCart ?? this.productCart
+        );
+    }
 
 }

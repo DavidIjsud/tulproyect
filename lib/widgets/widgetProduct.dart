@@ -1,8 +1,8 @@
-
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:tul_proyect/blocs/homeBloc/bloc/addnewprooduct_bloc.dart';
 
-class WidgetProduct extends StatelessWidget {
+class WidgetProduct extends StatefulWidget {
 
   final int id ;
   final String nombre;
@@ -18,7 +18,15 @@ class WidgetProduct extends StatelessWidget {
      }) : super(key: key);
 
   @override
+  _WidgetProductState createState() => _WidgetProductState();
+}
+
+class _WidgetProductState extends State<WidgetProduct> {
+  @override
   Widget build(BuildContext context) {
+
+      AddnewprooductBloc bloc = context.read<AddnewprooductBloc>();
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
@@ -32,16 +40,25 @@ class WidgetProduct extends StatelessWidget {
                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text('id: $id'),
-                        Text('nombre: $nombre'),
-                        Text('sku: $sku'),
-                        Text('descripcion: $descripcion', overflow: TextOverflow.ellipsis , ),
+                        Text('id: ${widget.id}'),
+                        Text('nombre: ${widget.nombre}'),
+                        Text('sku: ${widget.sku}'),
+                        Text('descripcion: ${widget.descripcion}', overflow: TextOverflow.ellipsis , ),
                       ],
                     ),
                  ),
                  Column(
                     children: [
-                        IconButton(onPressed: (){}, icon:  Icon( Icons.add ) ), 
+                        IconButton(onPressed: (){
+
+                            bloc.add( AddNewProductEvent (
+                              id: widget.id,
+                              nombre: widget.nombre,
+                              sku: widget.sku,
+                              descripcion: widget.descripcion,
+                            )) ;  
+
+                        }, icon:  Icon( Icons.add ) ), 
                         Container(
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.black38),
@@ -49,7 +66,11 @@ class WidgetProduct extends StatelessWidget {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric( horizontal: 10 ),
-                            child: Text("0"),
+                            child: BlocBuilder< AddnewprooductBloc , NewProductState >(
+                                 builder: ( _ , state ) {
+                                    return Text(state.productCart.searchForProductCantidad( widget.id ).toString());
+                                 },
+                              ),
                           )),
                         IconButton(onPressed: (){}, icon:  Icon( Icons.remove ) ), 
                     ],
@@ -61,5 +82,4 @@ class WidgetProduct extends StatelessWidget {
       ),
     );
   }
-
 }
