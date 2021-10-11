@@ -34,6 +34,9 @@ class _CartPageState extends State<CartPage> {
                   return WidgetProductCart(
                       nombre:  state.productCart.productsSelected[i].nombre,
                       cantidad:  state.productCart.productsSelected[i].cantidadSolicitado,
+                      idProducto: state.productCart.productsSelected[i].id,
+                      descripcion: state.productCart.productsSelected[i].descripcion,
+                      sku: state.productCart.productsSelected[i].sku,
                   );
               },
             );
@@ -43,5 +46,3 @@ class _CartPageState extends State<CartPage> {
     );
   }
 }
-
-//WidgetProductCart()

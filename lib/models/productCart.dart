@@ -31,9 +31,11 @@ class ProductCart {
 
     int searchForProductCantidad(int productId) {
       for (int i = 0; i < productsSelected.length; i++) {
+
         if (productsSelected[i].id == productId) {
           return productsSelected[i].cantidadSolicitado;
         }
+        
       }
       return 0;
     }

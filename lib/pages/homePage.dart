@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tul_proyect/blocs/homeBloc/bloc/addnewprooduct_bloc.dart';
 import 'package:tul_proyect/widgets/widgetProduct.dart';
 
 class HomePage extends StatefulWidget {

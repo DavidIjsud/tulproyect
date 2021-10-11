@@ -19,6 +19,16 @@ class AddNewProductEvent extends BaseEvents {
 
 }
 
+class DeleteProductEvent extends BaseEvents{
+
+  final int id;
+
+  DeleteProductEvent({
+    required this.id
+  });
+
+}
+
 class RemoveProductEvent extends BaseEvents {
 
     final int id;

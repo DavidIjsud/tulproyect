@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tul_proyect/blocs/homeBloc/bloc/addnewprooduct_bloc.dart';
 
 class WidgetProductCart extends StatefulWidget {
 
   final String nombre;
   final int cantidad ;
+  final int idProducto ;
+  final String sku;
+  final String descripcion;
 
-  WidgetProductCart({Key? key, required this.nombre, required this.cantidad  }) : super(key: key);
+  WidgetProductCart({Key? key,
+   required this.nombre,
+   required this.cantidad,
+   required this.idProducto , 
+   required this.sku ,
+   required this.descripcion  
+    }) : super(key: key);
 
   @override
   _WidgetProductCartState createState() => _WidgetProductCartState();
@@ -14,6 +25,9 @@ class WidgetProductCart extends StatefulWidget {
 class _WidgetProductCartState extends State<WidgetProductCart> {
   @override
   Widget build(BuildContext context) {
+
+    AddnewprooductBloc bloc = context.read<AddnewprooductBloc>();
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
@@ -34,11 +48,36 @@ class _WidgetProductCartState extends State<WidgetProductCart> {
                  ),
                  Column(
                     children: [
-                        IconButton(onPressed: (){}, icon:  Icon( Icons.add ) ), 
+                        IconButton(onPressed: (){
+
+                          bloc.add( AddNewProductEvent (
+                              id: widget.idProducto,
+                              nombre: widget.nombre,
+                              sku: widget.sku,
+                              descripcion: widget.descripcion,
+                            )) ;                            
+
+                        }, icon:  Icon( Icons.add ) ), 
                         SizedBox( height: 10, ),
-                        IconButton(onPressed: (){}, icon:  Icon( Icons.remove ) ), 
+                        IconButton(onPressed: (){
+
+                          bloc.add(
+                            RemoveProductEvent (
+                              id: widget.idProducto,
+                             )
+                          );    
+
+                        }, icon:  Icon( Icons.remove ) ), 
                         SizedBox(),
-                        IconButton(onPressed: (){}, icon:  Icon( Icons.delete ) ), 
+                        IconButton(onPressed: (){
+
+                              bloc.add(
+                                  DeleteProductEvent (
+                                    id: widget.idProducto,
+                                  )
+                              );
+
+                        }, icon:  Icon( Icons.delete ) ), 
                     ],
                  ),
                  

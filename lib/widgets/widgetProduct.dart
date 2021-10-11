@@ -72,7 +72,9 @@ class _WidgetProductState extends State<WidgetProduct> {
                                  },
                               ),
                           )),
-                        IconButton(onPressed: (){}, icon:  Icon( Icons.remove ) ), 
+                        IconButton(onPressed: (){
+                            bloc.add(  RemoveProductEvent( id: widget.id )  );
+                        }, icon:  Icon( Icons.remove ) ), 
                     ],
                  ),
                  
